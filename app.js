@@ -1,4 +1,6 @@
 const express = require('express')
+const databaseModule = require ('./databaseModule')
+const thingModel = require ('./thingModel')
 const app = express()
 const port = 3000
 
@@ -8,9 +10,11 @@ app.use(express.urlencoded())
 
 app.post('/test', function (req, res) {
 
-    console.log(req.body.kanelbulle);
+    thingModel.saveThing(req.body.kanelbulle)
 
     res.sendStatus(418)
 })
+
+
 
 app.listen(port, () => console.log(`Example app listening on port port!`))
